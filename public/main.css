@@ -1,302 +1,365 @@
 body {
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  background-image: url('../images/tripplanner.avif');
+  background-size: cover;
+  filter: blur(5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 }
 
 header {
-    color: white;
-    background: black;
-    padding: 10px 20px;
-    margin-bottom: 10px;
+  color: white;
+  background: black;
+  padding: 10px 20px;
 }
 
 main {
-    margin: 0 20px;
+  margin: 0 20px;
 }
-
-h1, h2, h3 {
-    font-family: 'Josefin Sans', sans-serif;
+#login-page,
+#signup-page {
+  margin-left: 40%;
+  margin-top: 12%;
+}
+input[type='text'],
+input[type='password'] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+#signup-form {
+  margin-top: 10%;
+}
+input[type='submit'] {
+  width: 30%;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 5px 0 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    padding-top: 5px;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding-top: 5px;
 }
 
 h2 {
-    margin: 10px 0;
-    font-size: 2em;
+  margin: 10px 0;
+  font-size: 2em;
 }
 
 h3 {
-    font-size: 1.5em;
-    margin: 5px 0 10px;
+  font-size: 1.5em;
+  margin: 5px 0 10px;
 }
 
 h4 {
-    font-size: 1.2em;
-    padding: 5px 20px;
-    font-weight: bold;
-    background-color: black;
-    color: white;
-    margin: 5px -20px;
+  font-size: 1.2em;
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin: 5px -20px;
 }
 
 h5 {
-    font-size: 1.2em;
-    padding: 5px 0;
-    font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  padding: 5px 0;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 p {
-    font-size: 1em;
-    padding: 3px 0;
+  font-size: 1em;
+  padding: 3px 0;
 }
 
-input, textarea {
-    border: 1px solid darkgrey;
+input,
+textarea {
+  border: 1px solid darkgrey;
 }
 
 button {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
-button, input, textarea {
-    font-size: 0.9em;
-    font-family: 'Montserrat', sans-serif;
+button,
+input,
+textarea {
+  font-size: 0.9em;
+  font-family: 'Montserrat', sans-serif;
 }
 
-input[type="date"]{
-    max-width: 150px;
+input[type='date'] {
+  max-width: 150px;
 }
 
-button, input[type="submit"], input[type="button"] {
-    border: 1px solid black;
-    background-color: white;
+button,
+input[type='button'] {
+  border: 1px solid black;
+  background-color: white;
 }
 
-input[type="submit"], input[type="button"] {
-    margin: 5px 0 10px;
+input[type='button'] {
+  margin: 5px 0 10px;
 }
 
-button:hover, input[type="submit"]:hover, input[type="button"]:hover  {
-    background-color: #E0E0E0;
+button:hover,
+input[type='submit']:hover,
+input[type='button']:hover {
+  background-color: #87cefa;
 }
 
-button:focus, input[type="submit"]:focus, input[type="button"]:focus  {
-    background-color: #E0E0E0;
+button:focus,
+input[type='submit']:focus,
+input[type='button']:focus {
+  background-color: #e0e0e0;
 }
 
 i:hover {
-    color:#43c0ac;
+  color: #43c0ac;
 }
 
-
-
-#login > input, #signup-form > input {
-    display: block;
-    margin: 5px 0 15px;
+#login > input,
+#signup-form > input {
+  display: block;
+  margin: 5px 0 15px;
 }
 
-#demo-note, #preview {
-    font-size: 0.9em;
-    line-height: 1.3;
-    background: #E0E0E0;
-    padding: 10px;
+#demo-note,
+#preview {
+  font-size: 0.9em;
+  line-height: 1.3;
+  background: #e0e0e0;
+  padding: 10px;
 }
 
 #preview {
-    margin: 10px 0 20px;
+  margin: 10px 0 20px;
 }
 
 .trip-preview {
-    border-radius: 5px;
-    padding: 5px 0;
-    margin: 10px 0;
-
+  border-radius: 5px;
+  padding: 5px 0;
+  margin: 10px 0;
 }
 
 .trip-preview > button {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .date {
-    margin-right: 45px;
+  margin-right: 45px;
 }
 
-.delete-trip:hover, .delete-trip:focus {
-    color: white;
-    background-color: #EC130E;
+.delete-trip:hover,
+.delete-trip:focus {
+  color: white;
+  background-color: #ec130e;
 }
 
 #trip-details {
-    position: relative;
+  position: relative;
 }
 
 #trip-details > .details {
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    border: none;
-    font-size: 1.5em;
-    background-color: white;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  border: none;
+  font-size: 1.5em;
+  background-color: white;
 }
 
 #saved-places {
-    position: relative;
+  position: relative;
 }
 
 #saved-places > .add-place {
-    position: absolute;
-    border: none;
-    top: -8px;
-    right: 0;
-    color: white;
-    background-color: black;
-    font-size: 1.2em;
+  position: absolute;
+  border: none;
+  top: -8px;
+  right: 0;
+  color: white;
+  background-color: black;
+  font-size: 1.2em;
 }
 
-.add-place-form, .add-item-form {
-    border-bottom: 1px dashed black;
+.add-place-form,
+.add-item-form {
+  border-bottom: 1px dashed black;
 }
 
-.place-form-entry, .details-form-entry {
-    margin: 5px 0;
-    display: flex;
-    width: 100%;
+.place-form-entry,
+.details-form-entry {
+  margin: 5px 0;
+  display: flex;
+  width: 100%;
 }
 
-.place-form-entry > input, .details-form-entry > input {
-    width: 100%;
-    flex-grow: 1;
+.place-form-entry > input,
+.details-form-entry > input {
+  width: 100%;
+  flex-grow: 1;
 }
 
-.place-form-entry > label, .details-form-entry > label {
-    margin-right: 10px;
-    flex-shrink: 0;
-    padding-top: 3px;
+.place-form-entry > label,
+.details-form-entry > label {
+  margin-right: 10px;
+  flex-shrink: 0;
+  padding-top: 3px;
 }
 
 .saved-place {
-    margin: 5px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed black;
-    position: relative;
+  margin: 5px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed black;
+  position: relative;
 }
 
 .saved-place > button {
-    position: absolute;
-    border: none;
-    font-size: 1.1em;
-    bottom: -10px;
-    background-color: white;
+  position: absolute;
+  border: none;
+  font-size: 1.1em;
+  bottom: -10px;
+  background-color: white;
 }
 
 .edit-place {
-    right: 30px;
-    padding-right: 0;
-    margin-right: 7px;
+  right: 30px;
+  padding-right: 0;
+  margin-right: 7px;
 }
 
 .delete-place {
-    right: 0;
+  right: 0;
 }
 
-.delete-place > i:hover, .delete-place:focus {
-    color: #EC130E;
+.delete-place > i:hover,
+.delete-place:focus {
+  color: #ec130e;
 }
 
 .place-notes {
-    margin-right: 65px;
+  margin-right: 65px;
 }
 
 #packing-list {
-    position: relative;
+  position: relative;
 }
 
 #packing-list > .add-item {
-    position: absolute;
-    top: -8px;
-    right: 0;
-    color: white;
-    background: black;
-    font-size: 1.2em;
-    border: none;
+  position: absolute;
+  top: -8px;
+  right: 0;
+  color: white;
+  background: black;
+  font-size: 1.2em;
+  border: none;
 }
 
 .item-container {
-    display: flex;
-    border-bottom: 1px dashed black;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-bottom: 2px;
+  display: flex;
+  border-bottom: 1px dashed black;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 2px;
 }
 
 .item-container > .delete-item {
-    font-size: 1.5em;
-    padding: 0 10px;
-    border: none;
-    margin: 0;
+  font-size: 1.5em;
+  padding: 0 10px;
+  border: none;
+  margin: 0;
 }
 
 .item-container > span {
-    flex-grow: 1;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-right: 5px;
+  flex-grow: 1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 5px;
 }
 
-.item-container > span:hover, .item-container > span:focus {
-    background: #E0E0E0;
-    color: black;
+.item-container > span:hover,
+.item-container > span:focus {
+  background: #e0e0e0;
+  color: black;
 }
-.item-container > .delete-item:hover, .item-container > .delete-item:focus {
-    color: white;
-    background-color: #EC130E;
+.item-container > .delete-item:hover,
+.item-container > .delete-item:focus {
+  color: white;
+  background-color: #ec130e;
 }
 
-.details:focus, .edit-place:focus, .add-place:focus, .add-item:focus {
-    color:#43c0ac;
+.details:focus,
+.edit-place:focus,
+.add-place:focus,
+.add-item:focus {
+  color: #43c0ac;
 }
 
 .form-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 -2px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -2px;
 }
 
 .form-container > input {
-    margin: 5px 2px 10px;
+  margin: 5px 2px 10px;
 }
 
 .form-container > .js-item {
-    flex: 1 1 auto;
-    min-width: 50px;
+  flex: 1 1 auto;
+  min-width: 50px;
 }
 
-[aria-checked="true"] {
-    text-decoration: line-through;
-    background: #767676;
-    color: white;
+[aria-checked='true'] {
+  text-decoration: line-through;
+  background: #767676;
+  color: white;
 }
 
 .item-update {
-    font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 .error-msg {
-    color: #EC130E;
-    font-size: 0.8em;
+  color: #ec130e;
+  font-size: 0.8em;
 }
 
 .error-field {
-    border: 1.5px solid #EC130E;
+  border: 1.5px solid #ec130e;
 }
 
-@media only screen and (min-width: 600px){
-    main, h1 {
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+@media only screen and (min-width: 600px) {
+  main,
+  h1 {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
