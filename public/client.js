@@ -689,45 +689,45 @@ function displayAIGeneratedTrip2(currentTrIP) {
 }
 
 function displayAIGeneratedTrip3(currentTrIP) {
-    // Replace YOUR_API_KEY_HERE with your actual API key
-    const API_KEY = "";
-  
-    // The prompt that you want the API to complete
-    const prompt = `give me 5 top list of recommended airports for the destination ${currentTrIP.destination}`;
-  
-    // The data that you want to send to the API
-    const data = JSON.stringify({
-      prompt: prompt,
-      temperature: 0.6,
-      max_tokens: 2048,
-      model: "text-davinci-003",
-    });
-  
-    // Send a POST request to the API
-    fetch("https://api.openai.com/v1/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: data,
+  // Replace YOUR_API_KEY_HERE with your actual API key
+  const API_KEY = "";
+
+  // The prompt that you want the API to complete
+  const prompt = `give me 5 top list of recommended airports for the destination ${currentTrIP.destination}`;
+
+  // The data that you want to send to the API
+  const data = JSON.stringify({
+    prompt: prompt,
+    temperature: 0.6,
+    max_tokens: 2048,
+    model: "text-davinci-003",
+  });
+
+  // Send a POST request to the API
+  fetch("https://api.openai.com/v1/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      // The completion that the API returned
+      const completion = result.choices[0].text;
+      console.log(completion);
+      const ele = document.querySelector(".ai-generated-3");
+      if (ele) {
+        ele.innerHTML = completion;
+      }
     })
-      .then((response) => response.json())
-      .then((result) => {
-        // The completion that the API returned
-        const completion = result.choices[0].text;
-        console.log(completion);
-        const ele = document.querySelector(".ai-generated-3");
-        if (ele) {
-          ele.innerHTML = completion;
-        }
-      })
-      .catch((error) => console.error(error));
-  }
+    .catch((error) => console.error(error));
+}
 
 //Displays the current trip that the user has selected
 function displaySelectedTrip(currentTrip, shouldEdit) {
-    // getWeatherData();
+  // getWeatherData();
   $("#active-trips").empty();
   $("#current-trip").attr("data-id", currentTrip.id);
   $("#current-trip").html(`<div id="trip-details">
@@ -1289,6 +1289,79 @@ function watchLogout() {
   });
 }
 
+function watchLang() {
+  $("select").on("change", function () {
+    if (this.value === "english") {
+      setValues();
+    } else {
+      setSpanishValues();
+    }
+  });
+}
+
+const data = {
+  Username: "Username",
+  Password: "Password",
+  lOGIN: "Log In",
+  new_user: "New User?",
+  signup: "Sign Up",
+  confirm_password: "Confirm password",
+  signupaccount: "Sign Up",
+  backtologin: "Back to login",
+  add: "add new trip",
+  logout: "logout",
+  viewtrip: "view trip",
+  edittrip: "Edit trip",
+  deletetrip: "Delete trip",
+  newuser: "new user?",
+};
+
+const spanish = {
+  Username: "Nombre de usuario",
+  Password: "Contraseña",
+  lOGIN: "Iniciar sesión",
+  new_user: "¿Nuevo usuario?",
+  signup: "Registrarse",
+  confirm_password: "Confirmar contraseña",
+  signupaccount: "Registrarse",
+  backtologin: "Volver a iniciar sesión",
+  add: "Agregar nuevo viaje",
+  logout: "Cerrar sesión",
+  viewtrip: "Ver viaje",
+  edittrip: "Editar viaje",
+  deletetrip: "Eliminar viaje",
+  newuser: "¿Nueva usuaria?",
+};
+
+function setValues() {
+  document.querySelector("#username").innerHTML = data.Username;
+  document.querySelector("#password").innerHTML = data.Password;
+  document.querySelector("#submit").value = data.lOGIN;
+  document.querySelector("#username-1").innerHTML = data.Username;
+  document.querySelector("#password-1").innerHTML = data.Password;
+  document.querySelector("#confirm-password").innerHTML = data.confirm_password;
+  document.querySelector("#js-submit-signup").value = data.signupaccount;
+  document.querySelector("#login-redirect").innerHTML = data.backtologin;
+  document.querySelector("#signup-redirect").innerHTML = data.signup;
+  document.querySelector("#logout-button").innerHTML = data.logout;
+  document.querySelector("#new").innerHTML = data.newuser;
+}
+
+function setSpanishValues() {
+  document.querySelector("#username").innerHTML = spanish.Username;
+  document.querySelector("#password").innerHTML = spanish.Password;
+  document.querySelector("#submit").value = spanish.lOGIN;
+  document.querySelector("#username-1").innerHTML = spanish.Username;
+  document.querySelector("#password-1").innerHTML = spanish.Password;
+  document.querySelector("#confirm-password").innerHTML =
+    spanish.confirm_password;
+  document.querySelector("#js-submit-signup").value = spanish.signupaccount;
+  document.querySelector("#login-redirect").innerHTML = spanish.backtologin;
+  document.querySelector("#signup-redirect").innerHTML = spanish.signup;
+  document.querySelector("#logout-button").innerHTML = spanish.logout;
+  document.querySelector("#new").innerHTML = spanish.newuser;
+}
+
 //run everything
 $(function () {
   watchLogin();
@@ -1301,4 +1374,6 @@ $(function () {
   watchForDeletes();
   watchForAdds();
   watchForSubmits();
+  watchLang();
+  setValues();
 });
