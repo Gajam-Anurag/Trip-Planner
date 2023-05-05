@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <header role="banner">
+  <!-- <header role="banner">
     <h1>TripWizard: Your Ultimate Travel Companion</h1>
     <select class="form-select" aria-label="Default select example">
       <option value="english" selected>English</option>
@@ -55,7 +55,88 @@
     <div id="active-trips" hidden aria-live="polite"></div>
     <div id="current-trip" hidden aria-live="polite"></div>
     <button id="logout-button" class="js-logout" hidden>Log Out</button>
-  </main>
+  </main> -->
+  <section class="theme__container">
+    <!-- HEADER -->
+    <header class="flex-box">
+      <div class="header__left flex-box">
+        <select class="form-select" aria-label="Default select example">
+          <option value="english" selected>English</option>
+          <option value="spanish">Spanish</option>
+        </select>
+      </div>
+      <div class="header__right">
+        <h1>TripWizard: Your Ultimate Travel Companion</h1>
+      </div>
+    </header>
+    <input hidden type="checkbox" id="sub-menu__check" class="sub-menu__check">
+
+    <!-- HOLIDAY -->
+    <article class="theme__holiday">
+      <a class="m-5 p-5" href="#login-form">Login</a>
+      <h3 class="holiday__title">Plan your next holiday</h3>
+      <div class="holiday__choose-wrap flex-box">
+        <div class="holiday__choose-item">
+          <a href="">
+            <img src="https://leloc90.github.io/loveTravel/assets/images/t-relax.png" alt="">
+            <span>RELAX</span>
+          </a>
+        </div>
+        <div class="holiday__choose-item">
+          <a href="">
+            <img src="https://leloc90.github.io/loveTravel/assets/images/t-cultural.png" alt="">
+            <span>CULTUR</span>
+          </a>
+        </div>
+        <div class="holiday__choose-item">
+          <a href="">
+            <img src="https://leloc90.github.io/loveTravel/assets/images/t-sport.png" alt="">
+            <span>SPORT</span>
+          </a>
+        </div>
+        <div class="holiday__choose-item">
+          <a href="">
+            <img src="https://leloc90.github.io/loveTravel/assets/images/t-history.png" alt="">
+            <span>HISTORY</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- DESTINATION -->
+  <div class="text-center" id="login-form">
+    <h2 class="title__text"> <span class="--title__text-underline dest-text">Login</span></h2>
+    <div id="login-page" aria-live="polite">
+      <form id="login" class="js-login-form text-center">
+        <label for="new-username" id="username">Username</label>
+        <input id="username" type="text" class="js-username form-control m-auto my-2" />
+        <label for="new-password" id="password">Password</label>
+        <input id="password" type="password" class="js-password m-auto mt-2" />
+        <input type="submit" value="Log In" id="submit" class="btn btn-primary m-auto mt-2" />
+      </form>
+      <p id="new" class="fs-6">New User?</p>
+      <button id="signup-redirect" class="btn btn-light">Sign Up Here</button>
+    </div>
+    <div id="signup-page" hidden aria-live="polite">
+      <form id="signup-form" class="js-signup-form text-center">
+        <label for="new-username" id="username-1">Username</label>
+        <input type="text" id="new-username" class="js-new-username form-control m-auto my-2" />
+        <label for="new-password" id="password-1">Password</label>
+        <input type="password" id="new-password" class="js-new-password m-auto my-2 form-control" />
+        <label for="confirm-password" id="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" class="js-confirm-password m-auto my-2 form-control" />
+        <input type="submit" id="js-submit-signup btn btn-primary m-auto mt-2" />
+      </form>
+      <button id="login-redirect" class="btn btn-light">Back To Login Page</button>
+    </div>
+    <div id="active-trips" hidden aria-live="polite"></div>
+    <div id="current-trip" hidden aria-live="polite"></div>
+    <button id="logout-button" class="js-logout" hidden>Log Out</button>
+  </div>
+
+
+<footer>By team valkeriyas</footer>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="client.js"></script>
