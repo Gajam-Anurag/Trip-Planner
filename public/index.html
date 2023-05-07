@@ -130,19 +130,27 @@
       </form>
       <button id="login-redirect" class="btn btn-light">Back To Login Page</button>
     </div>
-    <div id="active-trips" id="logout-button" class="js-logout" hidden class="container" text-align: center;>
+
+    <div>
+    <div id="active-trips" id="logout-button" class="js-logout" hidden class="container" >
       <h2>Recommened Places to Visit</h2>
-      <div id="places-list"></div>
-      <ul class="pagination" ;>
-        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="prev-page">&laquo; Prev</a></li> 
-        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="current-page">1</a></li>
-        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="next-page">Next &raquo;</a></li>
+      <div style="text-align: center;" id="places-list"> </div>
+      <br>
+
+      <ul class="pagination"  style="margin-left: 46%; list-style-type:none;">
+        <li ><a href="#" id="prev-page">&laquo; &nbsp; Prev  &nbsp;</a></li> 
+        <li ><a href="#" id="current-page"> &nbsp;1  &nbsp;</a></li>
+        <li ><a href="#" id="next-page"> &nbsp;Next &raquo;  &nbsp;</a></li>
       </ul>
     </div>
+    </div>
+
     <div id="active-trips" hidden aria-live="polite"></div>
     <div id="current-trip" hidden aria-live="polite"></div>
     <button id="logout-button" class="js-logout" hidden>Log Out</button>
   </div>
+
+</div>
 
 
 <footer>By team valkeriyas</footer>
@@ -171,9 +179,9 @@
       const endIndex = startIndex + limit;
       const placesToShow = placesList.slice(startIndex, endIndex);
 
-      let placesHTML = `<div class="container" style="display: flex; flex-wrap: wrap;">`;
+      let placesHTML = `<div class="container" style="display: flex; flex-wrap: wrap; display:inline-block;">`;
       for (let i = 0; i < placesToShow.length; i++) {
-        placesHTML += `<div class="place" style="display:inline-block; padding-right: 20px;">
+        placesHTML += `<div class="place" style="text-align:center;  padding-right: 20px;">
           <h2>${placesToShow[i].name}</h2>
           <p>${placesToShow[i].location}</p>
         </div>`;
