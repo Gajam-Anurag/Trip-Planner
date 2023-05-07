@@ -130,6 +130,15 @@
       </form>
       <button id="login-redirect" class="btn btn-light">Back To Login Page</button>
     </div>
+    <div id="active-trips" id="logout-button" class="js-logout" hidden class="container" text-align: center;>
+      <h2>Recommened Places to Visit</h2>
+      <div id="places-list"></div>
+      <ul class="pagination" ;>
+        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="prev-page">&laquo; Prev</a></li> 
+        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="current-page">1</a></li>
+        <li style="list-style-type:none; display:inline-block; padding: 20px"><a href="#" id="next-page">Next &raquo;</a></li>
+      </ul>
+    </div>
     <div id="active-trips" hidden aria-live="polite"></div>
     <div id="current-trip" hidden aria-live="polite"></div>
     <button id="logout-button" class="js-logout" hidden>Log Out</button>
@@ -140,6 +149,66 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="client.js"></script>
+  <script>
+    const placesList = [
+      { id: 1, name: "Statue of Liberty", location: "New York, USA" },
+      { id: 2, name: "Eiffel Tower", location: "Paris, France" },
+      { id: 3, name: "Taj Mahal", location: "Agra, India" },
+      { id: 4, name: "Great Wall of China", location: "China" },
+      { id: 5, name: "Machu Picchu", location: "Peru" },
+      { id: 6, name: "Christ the Redeemer", location: "Rio de Janeiro, Brazil" },
+      { id: 7, name: "Colosseum", location: "Rome, Italy" },
+      { id: 8, name: "Sagrada Familia", location: "Barcelona, Spain" },
+      { id: 9, name: "Petra", location: "Jordan" },
+      { id: 10, name: "Sydney Opera House", location: "Sydney, Australia" }
+    ];
+
+    const limit = 3;
+    let currentPage = 1;
+
+    function displayPlacesList() {
+      const startIndex = (currentPage - 1) * limit;
+      const endIndex = startIndex + limit;
+      const placesToShow = placesList.slice(startIndex, endIndex);
+
+      let placesHTML = `<div class="container" style="display: flex; flex-wrap: wrap;">`;
+      for (let i = 0; i < placesToShow.length; i++) {
+        placesHTML += `<div class="place" style="display:inline-block; padding-right: 20px;">
+          <h2>${placesToShow[i].name}</h2>
+          <p>${placesToShow[i].location}</p>
+        </div>`;
+      }
+      placesHTML +="</div>";
+
+      const placesListContainer = document.querySelector("#places-list");
+      placesListContainer.innerHTML = placesHTML;
+    }
+
+    function updateCurrentPage(newPage) {
+      currentPage = newPage;
+      displayPlacesList();
+      const currentPageLink = document.querySelector("#current-page");
+      currentPageLink.textContent = currentPage;
+    }
+
+    displayPlacesList();
+
+    const prevPageLink = document.querySelector("#prev-page");
+    const nextPageLink = document.querySelector("#next-page");
+
+    prevPageLink.addEventListener("click", () => {
+      if (currentPage > 1) {
+        updateCurrentPage(currentPage - 1);
+      }
+    });
+
+    nextPageLink.addEventListener("click", () => {
+      const totalPages = Math.ceil(placesList.length / limit);
+      if (currentPage < totalPages) {
+        updateCurrentPage(currentPage + 1);
+      }
+    });
+  </script>
 </body>
 
 </html>
