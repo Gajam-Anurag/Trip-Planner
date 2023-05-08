@@ -866,7 +866,9 @@ function displayActiveTrips(responseJson) {
   } else displayOneTrip(responseJson, activeTripsContainer);
   activeTripsContainer.appendTo('#active-trips');
   $('#active-trips')
-    .append('<button class="btn btn-primary">Add New Trip</button>')
+    .append(
+      '<button class="btn btn-primary" id="add-trip">Add New Trip</button>'
+    )
     .prop('hidden', false);
   $('#logout-button').prop('hidden', false);
 }
@@ -1149,7 +1151,7 @@ function watchForCancels() {
     if (selectedForm.hasClass('js-details-form')) {
       $('.js-details-form').remove();
       $('#active-trips').append(
-        '<button class="add-trip">Add New Trip</button>'
+        '<button class="btn btn-primary" id="add-trip">Add New Trip</button>'
       );
     }
   });
@@ -1244,7 +1246,7 @@ function watchDashboard() {
         $('#active-trips').empty();
         deleteTripFromDatabase(getAndDisplayActiveTrips, selectedId);
       }
-    } else if (selected.hasClass('add-trip')) {
+    } else if (selected.attr('id') == 'add-trip') {
       $('#new-user-msg').remove();
       $('.add-trip').remove();
       $('#active-trips').append(displayDetailsForm(true));
