@@ -620,7 +620,7 @@ function displayAIGeneratedTrip(currentTrIP) {
   $('#ai-generated-3').prop('hidden', true);
   $('#loading-data').prop('hidden', false);
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `generate travel plan for the place ${currentTrIP.destination} from ${currentTrIP.dates.start} to ${currentTrIP.dates.end}`;
@@ -663,7 +663,7 @@ function displayAIGeneratedTrip2(currentTrIP) {
   $('#loading-data').prop('hidden', false);
 
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `give me list of top hotels at the destination ${currentTrIP.destination} with website links in a href tag`;
@@ -705,7 +705,7 @@ function displayAIGeneratedTrip3(currentTrIP) {
   $('#ai-generated').prop('hidden', true);
   $('#loading-data').prop('hidden', false);
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `give me 5 top list of recommended airports for the destination ${currentTrIP.destination}`;
