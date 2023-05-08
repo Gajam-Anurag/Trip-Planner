@@ -4,19 +4,11 @@ body {
   min-height: 100vh;
 }
 
-body::before {
-  content: '';
-  background-image: url('../images/tripplanner.avif');
-  background-size: cover;
-  filter: blur(5px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
+#login-header,
+#logout-button {
+  background-color: white;
+  color: black;
 }
-
 header {
   color: white;
   background: black;
@@ -37,9 +29,24 @@ input[type='password'] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-#signup-form {
-  
+#active-trips-data {
+  width: 20%;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
 }
+
+#main-active-trips {
+  padding: 20px;
+}
+#ai-generated-3,
+#ai-generated-2,
+#ai-generated {
+  width: 80%;
+  height: 20%;
+  margin-left: 10%;
+}
+
 input[type='submit'] {
   width: 30%;
   /* background-color: black; */
@@ -92,8 +99,6 @@ p {
   padding: 3px 0;
 }
 
-
-
 button {
   margin: 10px 0;
 }
@@ -109,14 +114,11 @@ input[type='date'] {
   max-width: 150px;
 }
 
-
 button:hover,
 input[type='submit']:hover,
 input[type='button']:hover {
   background-color: #87cefa;
 }
-
-
 
 i:hover {
   color: #43c0ac;
@@ -357,7 +359,7 @@ i:hover {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -397,7 +399,7 @@ body {
 }
 
 .--title__text-underline:after {
-  content: "";
+  content: '';
   display: block;
   opacity: 0.7;
   height: 4px;
@@ -481,7 +483,7 @@ header {
 }
 
 .navbar__link:not(:last-child)::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
@@ -537,7 +539,7 @@ header {
 }
 
 .--subnav__after::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   right: -24px;
@@ -763,7 +765,7 @@ header {
 }
 
 .sub-menu__title:after {
-  content: "";
+  content: '';
   display: block;
   background-color: #ffd105;
   opacity: 0.5;
@@ -1211,7 +1213,7 @@ header {
 }
 
 .time__block:not(:first-child)::after {
-  content: "";
+  content: '';
   display: block;
   background-color: rgba(0, 0, 0, 0.08);
   position: absolute;
@@ -1490,7 +1492,7 @@ header {
 
 /* END PROMOTION */
 
-footer{
+footer {
   background-color: #14d5b1;
   height: 30px;
   text-align: center;
@@ -2044,4 +2046,3 @@ footer{
     bottom: 11px;
   }
 }
-
