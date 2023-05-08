@@ -42,9 +42,10 @@ input[type='password'] {
 #ai-generated-3,
 #ai-generated-2,
 #ai-generated {
-  width: 80%;
-  height: 20%;
-  margin-left: 10%;
+  width: 41%;
+  height: 50%;
+  margin-left: 30%;
+  text-align: start;
 }
 
 input[type='submit'] {

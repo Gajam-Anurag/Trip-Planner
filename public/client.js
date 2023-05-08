@@ -620,7 +620,7 @@ function displayAIGeneratedTrip(currentTrIP) {
   $('#ai-generated-3').prop('hidden', true);
   $('#loading-data').prop('hidden', false);
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `generate travel plan for the place ${currentTrIP.destination} from ${currentTrIP.dates.start} to ${currentTrIP.dates.end}`;
@@ -645,7 +645,8 @@ function displayAIGeneratedTrip(currentTrIP) {
     .then((response) => response.json())
     .then((result) => {
       // The completion that the API returned
-      const completion = result.choices[0].text;
+      let completion = result.choices[0].text;
+      completion = completion.replaceAll('\n', '<br>');
       console.log(completion);
       const ele = document.querySelector('#ai-generated-body');
       if (ele) {
@@ -663,7 +664,7 @@ function displayAIGeneratedTrip2(currentTrIP) {
   $('#loading-data').prop('hidden', false);
 
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `give me list of top hotels at the destination ${currentTrIP.destination} with website links in a href tag`;
@@ -688,7 +689,8 @@ function displayAIGeneratedTrip2(currentTrIP) {
     .then((response) => response.json())
     .then((result) => {
       // The completion that the API returned
-      const completion = result.choices[0].text;
+      let completion = result.choices[0].text;
+      completion = completion.replaceAll('\n', '<br>');
       console.log(completion);
       const ele = document.querySelector('#ai-generated2-body');
       if (ele) {
@@ -705,7 +707,7 @@ function displayAIGeneratedTrip3(currentTrIP) {
   $('#ai-generated').prop('hidden', true);
   $('#loading-data').prop('hidden', false);
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = '';
 
   // The prompt that you want the API to complete
   const prompt = `give me 5 top list of recommended airports for the destination ${currentTrIP.destination}`;
@@ -730,7 +732,9 @@ function displayAIGeneratedTrip3(currentTrIP) {
     .then((response) => response.json())
     .then((result) => {
       // The completion that the API returned
-      const completion = result.choices[0].text;
+      let completion = result.choices[0].text;
+
+      completion = completion.replaceAll('\n', '<br>');
       console.log(completion);
       const ele = document.querySelector('#ai-generated3-body');
       if (ele) {
@@ -773,18 +777,18 @@ function displaySelectedTrip(currentTrip, shouldEdit) {
     </div>
     ${
       shouldEdit
-        ? '<button class="btn btn-primary">View Trip</button>'
-        : '<button class="btn btn-primary">Edit Trip</button>'
+        ? '<button class="btn btn-primary" id="view-trip">View Trip</button>'
+        : '<button class="btn btn-primary" id="edit-trip">Edit Trip</button>'
     }
-    <button class="btn btn-primary">Delete Trip</button>
-    <button class="btn btn-primary">Back to Dashboard
+    <button class="btn btn-primary" id="delete-trip">Delete Trip</button>
+    <button class="btn btn-primary" id="dashboard-redirect">Back to Dashboard
     </button>
     <div><h1>AI recommended travel itenary<h2></div>
-    <button class="btn btn-outline-info" id="trip-iternary"> Trip Iternary
+    <button class="btn btn-outline-info" id="trip-iternary"> Travel Itinerary
     </button>
-    <button class="btn btn-outline-info" id="trip-homestays"> Top HomeStays
+    <button class="btn btn-outline-info" id="trip-homestays"> Homestays
     </button>
-    <button class="btn btn-outline-info" id="top-airports"> Airports to Reach
+    <button class="btn btn-outline-info" id="top-airports"> Airport Hubs
     </button>
     <div>
     <button class="btn btn-primary" type="button" disabled="" hidden id="loading-data">
@@ -793,14 +797,26 @@ function displaySelectedTrip(currentTrip, shouldEdit) {
     </button>
     </div>
     <div class="card" id="ai-generated" hidden>
-    <img src="https://media.istockphoto.com/id/1322517873/photo/hat-map-camera-sunglasses-travelogue-pen-departure-for-a-travel.jpg?s=612x612&w=0&k=20&c=R0QEmGGkR6c-2quD6FRrgxOrGylXWmBl91Kx2SO0OqU=" class="card-img-top" width="100%" height="200">
-    <div class="card-body" id="ai-generated-body"></div></div>
+      <img src="https://media.istockphoto.com/id/1322517873/photo/hat-map-camera-sunglasses-travelogue-pen-departure-for-a-travel.jpg?s=612x612&w=0&k=20&c=R0QEmGGkR6c-2quD6FRrgxOrGylXWmBl91Kx2SO0OqU=" class="card-img-top" width="100%" height="200">
+        <div class="card-body">
+        <h5 class="card-title">Unforgettable Explorations: A Well-Crafted Travel Itinerary</h5>
+          <p class="card-text" id="ai-generated-body"></p>
+        </div>
+    </div>
     <div class="card" id="ai-generated-2" hidden>
-    <img src="https://png.pngtree.com/thumb_back/fh260/background/20210908/pngtree-wanaka-homestay-afternoon-log-cabin-outdoor-foreign-house-photography-picture-with-image_833130.jpg" class="card-img-top" width="100%" height="200">
-    <div class="card-body" id="ai-generated2-body"></div></div>
+      <img src="https://png.pngtree.com/thumb_back/fh260/background/20210908/pngtree-wanaka-homestay-afternoon-log-cabin-outdoor-foreign-house-photography-picture-with-image_833130.jpg" class="card-img-top" width="100%" height="200">
+        <div class="card-body">
+          <h5 class="card-title">Top Homestays: Your Guide to Exceptional Accommodations</h5>
+          <p class="card-text" id="ai-generated2-body"></p>
+        </div>
+    </div>
     <div class="card" id="ai-generated-3" hidden>
-    <img src="https://m.media-amazon.com/images/I/71V-+sHTipL.jpg" class="card-img-top" id="airport-image" width="100%" height="200">
-    <div class="card-body" id="ai-generated3-body"><h5 class="card-title">AI Recommended Airports</h5></div></div>
+      <img src="https://m.media-amazon.com/images/I/71V-+sHTipL.jpg" class="card-img-top" id="airport-image" width="100%" height="200">
+        <div class="card-body" >
+        <h5 class="card-title">Airports of Convenience: Smooth Transits and Travel Experiences</h5>
+        <p class="card-text" id="ai-generated3-body"></p>
+        </div>
+    </div>
     `);
   $('#trip-iternary').click(() => {
     displayAIGeneratedTrip(currentTrip);
@@ -1165,9 +1181,10 @@ function watchTripPage() {
   $('#current-trip').on('click', 'button', (event) => {
     const selected = $(event.currentTarget);
     const selectedId = selected.parent('div').attr('data-id');
-    if (selected.hasClass('edit-trip')) {
+    console.log($('#dashboard-redirect'));
+    if (selected.attr('id') === 'edit-trip') {
       getAndDisplaySelectedTrip(selectedId, true);
-    } else if (selected.hasClass('delete-trip')) {
+    } else if (selected.attr('id') === 'delete-trip') {
       //prompt user if they want to delete the trip
       const confirmDelete = confirm(
         'Are you sure you want to delete this trip?'
@@ -1176,7 +1193,7 @@ function watchTripPage() {
         $('#current-trip').empty();
         deleteTripFromDatabase(getAndDisplayActiveTrips, selectedId);
       }
-    } else if (selected.hasClass('dashboard-redirect')) {
+    } else if (selected.attr('id') === 'dashboard-redirect') {
       //check to see if a form is active and prompt user of unsaved changes
       if ($('#current-trip').find('form').length > 0) {
         const confirmRedirect = confirm(
@@ -1191,7 +1208,7 @@ function watchTripPage() {
         $('#current-trip').empty().removeAttr('data-id');
         getAndDisplayActiveTrips();
       }
-    } else if (selected.hasClass('view-trip')) {
+    } else if (selected.attr('id') === 'view-trip') {
       //check to see if a form is active and prompt user of unsaved changes
       if ($('#current-trip').find('form').length > 0) {
         const confirmView = confirm(
