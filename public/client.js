@@ -618,12 +618,22 @@ function displayTripDetails(currentTrip) {
 }
 
 function displayAIGeneratedTrip(currentTrIP) {
-  $("#ai-generated-2").prop("hidden", true);
-  $("#ai-generated-3").prop("hidden", true);
-  $("#loading-data").prop("hidden", false);
-  // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = "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";
+  $('#ai-generated-2').prop('hidden', true);
+  $('#ai-generated-3').prop('hidden', true);
+  $('#loading-data').prop('hidden', false);
 
+  const selectElementValue = document.querySelector('.form-select').value;
+
+  console.log(selectElementValue);
+
+  // Replace YOUR_API_KEY_HERE with your actual API key
+  const API_KEY = '';
+  let promptComd;
+  if (selectElementValue == 'english') {
+    promptComd = `generate travel plan for the place ${currentTrIP.destination} from ${currentTrIP.dates.start} to ${currentTrIP.dates.end}`;
+  } else {
+    promptComd = `generate travel plan for the place ${currentTrIP.destination} from ${currentTrIP.dates.start} to ${currentTrIP.dates.end} in spanish`;
+  }
   // The prompt that you want the API to complete
 
   // The data that you want to send to the API
@@ -681,14 +691,13 @@ function displayAIGeneratedTrip2(currentTrIP) {
     prompt: promptComd,
     temperature: 0.6,
     max_tokens: 2048,
-    model: "text-davinci-003",
+    model: 'text-davinci-003',
   });
 
-  // Send a POST request to the API
-  fetch("https://api.openai.com/v1/completions", {
-    method: "POST",
+  fetch('https://api.openai.com/v1/completions', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${API_KEY}`,
     },
     body: data,
@@ -697,13 +706,13 @@ function displayAIGeneratedTrip2(currentTrIP) {
     .then((result) => {
       // The completion that the API returned
       let completion = result.choices[0].text;
-      completion = completion.replaceAll("\n", "<br>");
+      completion = JSON.parse(completion);
       console.log(completion);
-      const ele = document.querySelector("#ai-generated2-body");
-      if (ele) {
-        ele.innerHTML = completion;
-        $("#loading-data").prop("hidden", true);
-        $("#ai-generated-2").prop("hidden", false);
+      $('#tbody-data').empty();
+      for (let i = 0; i < completion.length; i++) {
+        $('#tbody-data').append(
+          `<tr><td>${completion[i].rank}</td><td>${completion[i].city}</td><td>${completion[i].country}</td><td>${completion[i].description}</td></tr>`
+        );
       }
     })
     .catch((error) => console.error(error));
@@ -751,11 +760,17 @@ function getBestPlaces(place, state, month) {
 }
 
 function displayAIGeneratedTrip3(currentTrIP) {
-  $("#ai-generated-2").prop("hidden", true);
-  $("#ai-generated").prop("hidden", true);
-  $("#loading-data").prop("hidden", false);
+  $('#ai-generated-2').prop('hidden', true);
+  $('#ai-generated').prop('hidden', true);
+  $('#loading-data').prop('hidden', false);
+
+  const selectElementValue = document.querySelector('.form-select').value;
+
+  console.log(selectElementValue);
+
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = "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";
+  const API_KEY = '';
+  let promptComd;
 
   if (selectElementValue == 'english') {
     promptComd = `give me 5 top list of recommended airports for the destination ${currentTrIP.destination}`;
@@ -838,7 +853,7 @@ function displaySelectedTrip(currentTrip, shouldEdit) {
     <button class="btn btn-primary" id="dashboard-redirect">Back to Dashboard
     </button>
     <div><h1 id="ai-recommend">AI recommended travel itinerary<h2></div>
-    <button class="btn btn-outline-primary" id="trip-iternary"> Travel Itinerary
+    <button class="btn btn-outline-info" id="trip-iternary"> Travel Itinerary
     </button>
     <button class="btn btn-outline-primary" id="trip-homestays"> Homestays
     </button>
@@ -926,12 +941,11 @@ function displayActiveTrips(responseJson) {
 }
 
 function getAndDisplayActiveTrips(isNewUser) {
-  $("#login-page").prop("hidden", true);
-  $("#signup-page").prop("hidden", true);
-  $("#current-trip").prop("hidden", true);
-  $("#login-header").prop("hidden", true);
-  $("#login-title").prop("hidden", true);
-  $("#trips-list").prop("hidden", false);
+  $('#login-page').prop('hidden', true);
+  $('#signup-page').prop('hidden', true);
+  $('#current-trip').prop('hidden', true);
+  $('#login-header').prop('hidden', true);
+  $('#trips-list').prop('hidden', false);
   if (isNewUser) {
     $("#active-trips").html(`<div id="new-user-msg"><h2>Account Created!</h2>
         <h3>Let's Get Started</h3></div>`);
@@ -940,12 +954,13 @@ function getAndDisplayActiveTrips(isNewUser) {
 }
 
 function displayLogin() {
-  $("#active-trips").empty().prop("hidden", true);
-  $("#current-trip").empty().prop("hidden", true);
-  $("#trips-list").prop("hidden", true);
-  $("#trips-list").prop("hidden", true);
-  $("#logout-button").prop("hidden", true);
-  $("#login-page").prop("hidden", false);
+  $('#active-trips').empty().prop('hidden', true);
+  $('#current-trip').empty().prop('hidden', true);
+  $('#trips-list').prop('hidden', true);
+  $('#trips-list').prop('hidden', true);
+  $('#logout-button').prop('hidden', true);
+  $('#login-page').prop('hidden', false);
+  $('#login-header').prop('hidden', false);
 }
 
 //DISPLAY ERROR FUNCTIONS//
@@ -1309,9 +1324,9 @@ function watchDashboard() {
 function watchLogin() {
   $(".js-login-form").submit((event) => {
     event.preventDefault();
-    const username = $(".js-username").val();
-    const password = $(".js-password").val();
-
+    const username = $('.js-username').val();
+    const password = $('.js-password').val();
+    console.log(username, password);
     //reset the login form
     $(".js-username")
       .val("")
@@ -1440,49 +1455,65 @@ function watchRecommendPlaces() {
 }
 
 const data = {
-  Username: "Username",
-  Password: "Password",
-  lOGIN: "Login",
-  new_user: "New User?",
-  signup: "Sign Up",
-  confirm_password: "Confirm password",
-  signupaccount: "Sign Up",
-  backtologin: "Back to login",
-  add: "add new trip",
-  logout: "logout",
-  viewtrip: "view trip",
-  edittrip: "Edit trip",
-  deletetrip: "Delete trip",
-  newuser: "new user?",
-  title: "TripWizard: Your Ultimate Travel Companion",
-  planholiday: "Plan your next holiday",
-  relax: "RELAX",
-  culture: "CULTURE",
-  sport: "SPORT",
-  history: "HISTORY",
+  Username: 'Username',
+  Password: 'Password',
+  lOGIN: 'Login',
+  new_user: 'New User?',
+  signup: 'Sign Up',
+  confirm_password: 'Confirm password',
+  signupaccount: 'Sign Up',
+  backtologin: 'Back to login',
+  add: 'add new trip',
+  logout: 'logout',
+  viewtrip: 'View trip',
+  edittrip: 'Edit trip',
+  deletetrip: 'Delete trip',
+  newuser: 'new user?',
+  title: 'TripWizard: Your Ultimate Travel Companion',
+  planholiday: 'Plan your next holiday',
+  relax: 'RELAX',
+  culture: 'CULTURE',
+  sport: 'SPORT',
+  history: 'HISTORY',
+  currentTriplist: 'Active Trips',
+  dashboard: 'Back to Dashboard',
+  bookmark: 'No Bookmarked Places Yet',
+  items: 'No Items Yet',
+  airecommend: 'AI recommended travel itinerary',
+  travel: 'Travel Itinerary',
+  homestays: 'Homestays',
+  airports: 'Airport Hubs',
 };
 
 const spanish = {
-  Username: "Nombre de usuario",
-  Password: "Contraseña",
-  lOGIN: "Acceso",
-  new_user: "¿Nuevo usuario?",
-  signup: "Registrarse",
-  confirm_password: "Confirmar contraseña",
-  signupaccount: "Registrarse",
-  backtologin: "Volver a iniciar sesión",
-  add: "Agregar nuevo viaje",
-  logout: "Cerrar sesión",
-  viewtrip: "Ver viaje",
-  edittrip: "Editar viaje",
-  deletetrip: "Eliminar viaje",
-  newuser: "¿Nueva usuaria?",
-  title: "TripWizard: su mejor compañero de viaje",
-  planholiday: "Planifique sus próximas vacaciones",
-  relax: "RELAJARSE",
-  culture: "CULTURA",
-  sport: "DEPORTE",
-  history: "HISTORIA",
+  Username: 'Nombre de usuario',
+  Password: 'Contraseña',
+  lOGIN: 'Acceso',
+  new_user: '¿Nuevo usuario?',
+  signup: 'Registrarse',
+  confirm_password: 'Confirmar contraseña',
+  signupaccount: 'Registrarse',
+  backtologin: 'Volver a iniciar sesión',
+  add: 'Agregar nuevo viaje',
+  logout: 'Cerrar sesión',
+  viewtrip: 'Ver viaje',
+  edittrip: 'Editar viaje',
+  deletetrip: 'Eliminar viaje',
+  newuser: '¿Nueva usuaria?',
+  title: 'TripWizard: su mejor compañero de viaje',
+  planholiday: 'Planifique sus próximas vacaciones',
+  relax: 'RELAJARSE',
+  culture: 'CULTURA',
+  sport: 'DEPORTE',
+  history: 'HISTORIA',
+  currentTriplist: 'Viajes Activos',
+  dashboard: 'Volver al panel',
+  bookmark: 'No hay lugares marcados todavía',
+  items: 'Aún no hay artículos',
+  airecommend: 'Itinerario de viaje recomendado por AI',
+  travel: 'Itinerario de viaje',
+  homestays: 'Casas de familia',
+  airports: 'Centros aeroportuarios',
 };
 
 function setValues() {
@@ -1493,41 +1524,167 @@ function setValues() {
   document.querySelector("#password-1").innerHTML = data.Password;
   document.querySelector("#confirm-password").innerHTML = data.confirm_password;
   //document.querySelector('#js-submit-signup').value = data.signupaccount;
-  document.querySelector("#login-redirect").innerHTML = data.backtologin;
-  document.querySelector("#signup-redirect").innerHTML = data.signup;
-  document.querySelector("#logout-button").innerHTML = data.logout;
-  document.querySelector("#new").innerHTML = data.newuser;
-  document.querySelector("#title").innerHTML = data.title;
-  document.querySelector("#planholiday").innerHTML = data.planholiday;
-  document.querySelector("#relax").innerHTML = data.relax;
-  document.querySelector("#culture").innerHTML = data.culture;
-  document.querySelector("#sport").innerHTML = data.sport;
-  document.querySelector("#history").innerHTML = data.history;
-  document.querySelector("#login-header").innerHTML = data.lOGIN;
-  document.querySelector("#login-body").innerHTML = data.lOGIN;
+  document.querySelector('#login-redirect').innerHTML = data.backtologin;
+  document.querySelector('#signup-redirect').innerHTML = data.signup;
+  document.querySelector('#logout-button').innerHTML = data.logout;
+  document.querySelector('#new').innerHTML = data.newuser;
+  document.querySelector('#title').innerHTML = data.title;
+  document.querySelector('#planholiday').innerHTML = data.planholiday;
+  document.querySelector('#relax').innerHTML = data.relax;
+  document.querySelector('#culture').innerHTML = data.culture;
+  document.querySelector('#sport').innerHTML = data.sport;
+  document.querySelector('#history').innerHTML = data.history;
+  document.querySelector('#login-header').innerHTML = data.lOGIN;
+  document.querySelector('#login-body').innerHTML = data.lOGIN;
+  document.querySelector('#signup-body').innerHTML = data.signup;
+
+  if (document.getElementById('view-trip')) {
+    document.querySelector('#view-trip').innerHTML = data.viewtrip;
+  }
+  if (document.getElementById('edit-trip')) {
+    document.querySelector('#edit-trip').innerHTML = data.viewtrip;
+  }
+  if (document.getElementById('delete-trip')) {
+    document.querySelector('#delete-trip').innerHTML = data.viewtrip;
+  }
+  if (document.getElementById('dashboard-redirect')) {
+    document.querySelector('#dashboard-redirect').innerHTML = data.dashboard;
+  }
+  if (document.getElementById('bookmark')) {
+    document.querySelector('#bookmark').innerHTML = data.bookmark;
+  }
+  if (document.getElementById('items')) {
+    document.querySelector('#items').innerHTML = data.items;
+  }
+  if (document.getElementById('ai-recommend')) {
+    document.querySelector('#ai-recommend').innerHTML = data.airecommend;
+  }
+  if (document.getElementById('trip-iternary')) {
+    document.querySelector('#trip-iternary').innerHTML = data.travel;
+  }
+  if (document.getElementById('trip-homestays')) {
+    document.querySelector('#trip-homestays').innerHTML = data.homestays;
+  }
+  if (document.getElementById('trip-airports')) {
+    document.querySelector('#trip-airports').innerHTML = data.airports;
+  }
+
+  if (document.getElementById('add-trip')) {
+    document.querySelector('#add-trip').innerHTML = data.add;
+  }
+
+  if (document.getElementById('active-trip-heading')) {
+    document.querySelector('#active-trip-heading').innerHTML =
+      data.currentTriplist;
+  }
+  if (document.querySelectorAll('.view-trip')) {
+    const viewTripElements = document.querySelectorAll('.view-trip');
+    viewTripElements.forEach((element) => {
+      element.innerHTML = data.viewtrip;
+    });
+  }
+
+  if (document.querySelectorAll('.edit-trip')) {
+    const editTripElements = document.querySelectorAll('.edit-trip');
+    editTripElements.forEach((element) => {
+      element.innerHTML = data.edittrip;
+    });
+  }
+
+  if (document.querySelectorAll('.delete-trip')) {
+    const deleteTripElements = document.querySelectorAll('.delete-trip');
+    deleteTripElements.forEach((element) => {
+      element.innerHTML = data.deletetrip;
+    });
+  }
 }
 
 function setSpanishValues() {
-  document.querySelector("#username").innerHTML = spanish.Username;
-  document.querySelector("#password").innerHTML = spanish.Password;
-  document.querySelector("#submit").value = spanish.lOGIN;
-  document.querySelector("#username-1").innerHTML = spanish.Username;
-  document.querySelector("#password-1").innerHTML = spanish.Password;
-  document.querySelector("#confirm-password").innerHTML =
+  console.log(document.getElementById('view-trip'));
+
+  document.querySelector('#username').innerHTML = spanish.Username;
+  document.querySelector('#password').innerHTML = spanish.Password;
+  document.querySelector('#submit').value = spanish.lOGIN;
+  document.querySelector('#username-1').innerHTML = spanish.Username;
+  document.querySelector('#password-1').innerHTML = spanish.Password;
+  document.querySelector('#confirm-password').innerHTML =
     spanish.confirm_password;
   //document.querySelector('#js-submit-signup').value = spanish.signupaccount;
-  document.querySelector("#login-redirect").innerHTML = spanish.backtologin;
-  document.querySelector("#signup-redirect").innerHTML = spanish.signup;
-  document.querySelector("#logout-button").innerHTML = spanish.logout;
-  document.querySelector("#new").innerHTML = spanish.newuser;
-  document.querySelector("#title").innerHTML = spanish.title;
-  document.querySelector("#planholiday").innerHTML = spanish.planholiday;
-  document.querySelector("#relax").innerHTML = spanish.relax;
-  document.querySelector("#culture").innerHTML = spanish.culture;
-  document.querySelector("#sport").innerHTML = spanish.sport;
-  document.querySelector("#history").innerHTML = spanish.history;
-  document.querySelector("#login-header").innerHTML = spanish.lOGIN;
-  document.querySelector("#login-body").innerHTML = spanish.lOGIN;
+  document.querySelector('#login-redirect').innerHTML = spanish.backtologin;
+  document.querySelector('#signup-redirect').innerHTML = spanish.signup;
+  document.querySelector('#logout-button').innerHTML = spanish.logout;
+  document.querySelector('#new').innerHTML = spanish.newuser;
+  document.querySelector('#title').innerHTML = spanish.title;
+  document.querySelector('#planholiday').innerHTML = spanish.planholiday;
+  document.querySelector('#relax').innerHTML = spanish.relax;
+  document.querySelector('#culture').innerHTML = spanish.culture;
+  document.querySelector('#sport').innerHTML = spanish.sport;
+  document.querySelector('#history').innerHTML = spanish.history;
+  document.querySelector('#login-header').innerHTML = spanish.lOGIN;
+  document.querySelector('#login-body').innerHTML = spanish.lOGIN;
+  document.querySelector('#signup-body').innerHTML = spanish.signup;
+
+  if (document.getElementById('add-trip')) {
+    document.querySelector('#add-trip').innerHTML = spanish.add;
+  }
+
+  if (document.getElementById('active-trip-heading')) {
+    document.querySelector('#active-trip-heading').innerHTML =
+      spanish.currentTriplist;
+  }
+
+  if (document.getElementById('view-trip')) {
+    document.querySelector('#view-trip').innerHTML = spanish.viewtrip;
+  }
+  if (document.getElementById('edit-trip')) {
+    document.querySelector('#edit-trip').innerHTML = spanish.viewtrip;
+  }
+  if (document.getElementById('delete-trip')) {
+    document.querySelector('#delete-trip').innerHTML = spanish.viewtrip;
+  }
+  if (document.getElementById('dashboard-redirect')) {
+    document.querySelector('#dashboard-redirect').innerHTML = spanish.dashboard;
+  }
+
+  if (document.getElementById('bookmark')) {
+    document.querySelector('#bookmark').innerHTML = spanish.bookmark;
+  }
+  if (document.getElementById('items')) {
+    document.querySelector('#items').innerHTML = spanish.items;
+  }
+  if (document.getElementById('ai-recommend')) {
+    document.querySelector('#ai-recommend').innerHTML = spanish.airecommend;
+  }
+  if (document.getElementById('trip-iternary')) {
+    document.querySelector('#trip-iternary').innerHTML = spanish.travel;
+  }
+  if (document.getElementById('trip-homestays')) {
+    document.querySelector('#trip-homestays').innerHTML = spanish.homestays;
+  }
+  if (document.getElementById('trip-airports')) {
+    document.querySelector('#trip-airports').innerHTML = spanish.airports;
+  }
+
+  if (document.querySelectorAll('.view-trip')) {
+    const viewTripElements = document.querySelectorAll('.view-trip');
+    viewTripElements.forEach((element) => {
+      element.innerHTML = spanish.viewtrip;
+    });
+  }
+
+  if (document.querySelectorAll('.edit-trip')) {
+    const editTripElements = document.querySelectorAll('.edit-trip');
+    editTripElements.forEach((element) => {
+      element.innerHTML = spanish.edittrip;
+    });
+  }
+
+  if (document.querySelectorAll('.delete-trip')) {
+    const deleteTripElements = document.querySelectorAll('.delete-trip');
+    deleteTripElements.forEach((element) => {
+      element.innerHTML = spanish.deletetrip;
+    });
+  }
 }
 
 //run everything
