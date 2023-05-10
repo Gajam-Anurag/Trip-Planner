@@ -2086,3 +2086,47 @@ footer {
 #packing-list {
   margin: 70px;
 }
+
+#recommended-places {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#places-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#places-list li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+#pagination button:hover {
+  background-color: #0069d9;
+}
+
+#page-number {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
+}

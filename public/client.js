@@ -838,7 +838,7 @@ function displaySelectedTrip(currentTrip, shouldEdit) {
     <button class="btn btn-primary" id="dashboard-redirect">Back to Dashboard
     </button>
     <div><h1 id="ai-recommend">AI recommended travel itinerary<h2></div>
-    <button class="btn btn-outline-info" id="trip-iternary"> Travel Itinerary
+    <button class="btn btn-outline-primary" id="trip-iternary"> Travel Itinerary
     </button>
     <button class="btn btn-outline-primary" id="trip-homestays"> Homestays
     </button>
