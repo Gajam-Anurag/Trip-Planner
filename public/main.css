@@ -36,6 +36,19 @@ input[type='password'] {
   border-radius: 15px;
 }
 
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid gray !important;
+}
+
+#form-recommended-places {
+  border: 1px solid black;
+  padding: 10px;
+  width: 96%;
+  margin-left: 2%;
+  border-radius: 15px;
+  margin-bottom: 2%;
+}
 #main-active-trips {
   padding: 20px;
 }

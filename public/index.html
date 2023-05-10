@@ -31,46 +31,16 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+    />
+
     <link rel="stylesheet" href="default.css" />
     <link rel="stylesheet" href="main.css" />
   </head>
 
   <body>
-    <!-- <header role="banner">
-    <h1>TripWizard: Your Ultimate Travel Companion</h1>
-    <select class="form-select" aria-label="Default select example">
-      <option value="english" selected>English</option>
-      <option value="spanish">Spanish</option>
-    </select>
-  </header>
-  <main role="main">
-    <div id="login-page" aria-live="polite">
-      <form id="login" class="js-login-form">
-        <label for="new-username" id="username">Username</label>
-        <input id="username" type="text" class="js-username form-control" />
-        <label for="new-password" id="password">Password</label>
-        <input id="password" type="password" class="js-password" />
-        <input type="submit" value="Log In" id="submit" class="btn btn-dark" />
-      </form>
-      <p id="new" class="fs-6">New User?</p>
-      <button id="signup-redirect" class="btn btn-dark">Sign Up Here</button>
-    </div>
-    <div id="signup-page" hidden aria-live="polite">
-      <form id="signup-form" class="js-signup-form">
-        <label for="new-username" id="username-1">Username</label>
-        <input type="text" id="new-username" class="js-new-username" />
-        <label for="new-password" id="password-1">Password</label>
-        <input type="password" id="new-password" class="js-new-password" />
-        <label for="confirm-password" id="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm-password" class="js-confirm-password" />
-        <input type="submit" id="js-submit-signup" />
-      </form>
-      <button id="login-redirect">Back To Login Page</button>
-    </div>
-    <div id="active-trips" hidden aria-live="polite"></div>
-    <div id="current-trip" hidden aria-live="polite"></div>
-    <button id="logout-button" class="js-logout" hidden>Log Out</button>
-  </main> -->
     <section class="theme__container">
       <!-- HEADER -->
       <header class="d-flex justify-content-between">
@@ -87,6 +57,9 @@
           <a class="btn btn-primary" href="#login-form" id="login-header"
             >Login</a
           >
+          <button id="logout-button" class="btn btn-light" hidden>
+            Log Out
+          </button>
         </div>
       </header>
 
@@ -102,7 +75,7 @@
         <h5 class="holiday__title" id="planholiday">Plan your next holiday</h5>
         <div class="holiday__choose-wrap flex-box">
           <div class="holiday__choose-item">
-            <a href="">
+            <a href="" style="pointer-events: none; cursor: default">
               <img
                 src="https://leloc90.github.io/loveTravel/assets/images/t-relax.png"
                 alt=""
@@ -111,7 +84,7 @@
             </a>
           </div>
           <div class="holiday__choose-item">
-            <a href="">
+            <a href="" style="pointer-events: none; cursor: default">
               <img
                 src="https://leloc90.github.io/loveTravel/assets/images/t-cultural.png"
                 alt=""
@@ -120,7 +93,7 @@
             </a>
           </div>
           <div class="holiday__choose-item">
-            <a href="">
+            <a href="" style="pointer-events: none; cursor: default">
               <img
                 src="https://leloc90.github.io/loveTravel/assets/images/t-sport.png"
                 alt=""
@@ -129,7 +102,7 @@
             </a>
           </div>
           <div class="holiday__choose-item">
-            <a href="">
+            <a href="" style="pointer-events: none; cursor: default">
               <img
                 src="https://leloc90.github.io/loveTravel/assets/images/t-history.png"
                 alt=""
@@ -143,12 +116,12 @@
 
     <!-- DESTINATION -->
     <div class="text-center" id="login-form">
-      <h2 class="title__text" id="login-title">
-        <span class="--title__text-underline dest-text" id="login-body"
-          >Login</span
-        >
-      </h2>
       <div id="login-page" aria-live="polite">
+        <h2 class="title__text" id="login-title">
+          <span class="--title__text-underline dest-text" id="login-body"
+            >Login</span
+          >
+        </h2>
         <form id="login" class="js-login-form text-center">
           <label for="new-username" id="username">Username</label>
           <input
@@ -173,6 +146,11 @@
         <button id="signup-redirect" class="btn btn-light">Sign Up Here</button>
       </div>
       <div id="signup-page" hidden aria-live="polite">
+        <h2 class="title__text" id="signup-title">
+          <span class="--title__text-underline dest-text" id="signup-body"
+            >Sign Up</span
+          >
+        </h2>
         <form id="signup-form" class="js-signup-form text-center">
           <label for="new-username" id="username-1">Username</label>
           <input
@@ -203,96 +181,96 @@
           Back To Login Page
         </button>
       </div>
-
-      <div>
-        <!-- <div id="active-trips" id="logout-button" class="js-logout" hidden class="container" >
-      <h2>Recommened Places to Visit</h2>
-      <div style="text-align: center;" id="places-list"> </div>
-      <br>
-
-      <ul class="pagination"  style="margin-left: 46%; list-style-type:none;">
-        <li ><a href="#" id="prev-page">&laquo; &nbsp; Prev  &nbsp;</a></li> 
-        <li ><a href="#" id="current-page"> &nbsp;1  &nbsp;</a></li>
-        <li ><a href="#" id="next-page"> &nbsp;Next &raquo;  &nbsp;</a></li>
-      </ul> 
-    </div> -->
+      <div id="active-trips" hidden aria-live="polite">
+        <h1
+          class="display-1"
+          id="active-trip-heading"
+          style="text-align: left; margin-left: 30px; margin-top: 20px"
+        >
+          Active Trips
+        </h1>
       </div>
-      <h2 hidden id="active-trips-list">Active trips</h2>
-      <div id="active-trips" hidden aria-live="polite"></div>
-      <h2 hidden id="current-trips-list">Active trips</h2>
       <div id="current-trip" hidden aria-live="polite"></div>
-      <button id="logout-button" class="js-logout" hidden>Log Out</button>
+
+      <form id="form-recommended-places">
+        <h2 style="text-align: first">Get the AI Recommened places</h2>
+        <div
+          id="recommended-places"
+          class="d-flex flex-row justify-content-between"
+        >
+          <div>
+            <label id="labels-id">Enter the top number of places:</label>
+            <input type="text" class="form-control" id="place-id" />
+          </div>
+          <div style="margin-left: -8%">
+            <label id="labels-id">Enter the state or Country:</label>
+            <input type="text" class="form-control" id="state-id" />
+          </div>
+          <label style="margin-top: 1.8%">Month:</label>
+          <div>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="select-month"
+              style="
+                padding: 14px;
+                width: 120%;
+                margin-left: -50%;
+                margin-top: 4%;
+              "
+            >
+              <option selected>Select the month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <div>
+            <button type="submit" id="recommend-button" class="btn btn-primary">
+              Get Results
+            </button>
+          </div>
+        </div>
+        <div id="best-place-table" style="margin-top: 10px">
+          <table
+            class="table table-bordered table-hover border-primary"
+            id="table-data"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider" id="tbody-data"></tbody>
+          </table>
+        </div>
+      </form>
     </div>
 
     <footer>By team valkeriyas</footer>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="client.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script>
-      const placesList = [
-        { id: 1, name: 'Statue of Liberty', location: 'New York, USA' },
-        { id: 2, name: 'Eiffel Tower', location: 'Paris, France' },
-        { id: 3, name: 'Taj Mahal', location: 'Agra, India' },
-        { id: 4, name: 'Great Wall of China', location: 'China' },
-        { id: 5, name: 'Machu Picchu', location: 'Peru' },
-        {
-          id: 6,
-          name: 'Christ the Redeemer',
-          location: 'Rio de Janeiro, Brazil',
-        },
-        { id: 7, name: 'Colosseum', location: 'Rome, Italy' },
-        { id: 8, name: 'Sagrada Familia', location: 'Barcelona, Spain' },
-        { id: 9, name: 'Petra', location: 'Jordan' },
-        { id: 10, name: 'Sydney Opera House', location: 'Sydney, Australia' },
-      ];
-
-      const limit = 3;
-      let currentPage = 1;
-
-      function displayPlacesList() {
-        const startIndex = (currentPage - 1) * limit;
-        const endIndex = startIndex + limit;
-        const placesToShow = placesList.slice(startIndex, endIndex);
-
-        let placesHTML = `<div class="container" style="display: flex; flex-wrap: wrap; display:inline-block;">`;
-        for (let i = 0; i < placesToShow.length; i++) {
-          placesHTML += `<div class="place" style="text-align:center;  padding-right: 20px;">
-          <h2>${placesToShow[i].name}</h2>
-          <p>${placesToShow[i].location}</p>
-        </div>`;
-        }
-        placesHTML += '</div>';
-
-        const placesListContainer = document.querySelector('#places-list');
-        placesListContainer.innerHTML = placesHTML;
-      }
-
-      function updateCurrentPage(newPage) {
-        currentPage = newPage;
-        displayPlacesList();
-        const currentPageLink = document.querySelector('#current-page');
-        currentPageLink.textContent = currentPage;
-      }
-
-      displayPlacesList();
-
-      const prevPageLink = document.querySelector('#prev-page');
-      const nextPageLink = document.querySelector('#next-page');
-
-      prevPageLink.addEventListener('click', () => {
-        if (currentPage > 1) {
-          updateCurrentPage(currentPage - 1);
-        }
-      });
-
-      nextPageLink.addEventListener('click', () => {
-        const totalPages = Math.ceil(placesList.length / limit);
-        if (currentPage < totalPages) {
-          updateCurrentPage(currentPage + 1);
-        }
+      $(document).ready(function () {
+        $('#table-data').DataTable();
       });
     </script>
   </body>
