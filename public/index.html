@@ -63,8 +63,6 @@
         </div>
       </header>
 
-    </header>
-
       <!-- HOLIDAY -->
       <article class="theme__holiday">
         <h5 class="holiday__title" id="planholiday">Plan your next holiday</h5>
@@ -106,27 +104,8 @@
             </a>
           </div>
         </div>
-        <div class="holiday__choose-item">
-          <a href="">
-            <img src="https://leloc90.github.io/loveTravel/assets/images/t-cultural.png" alt="" />
-            <span id="culture">CULTURE</span>
-          </a>
-        </div>
-        <div class="holiday__choose-item">
-          <a href="">
-            <img src="https://leloc90.github.io/loveTravel/assets/images/t-sport.png" alt="" />
-            <span id="sport">SPORT</span>
-          </a>
-        </div>
-        <div class="holiday__choose-item">
-          <a href="">
-            <img src="https://leloc90.github.io/loveTravel/assets/images/t-history.png" alt="" />
-            <span id="history">HISTORY</span>
-          </a>
-        </div>
-      </div>
-    </article>
-  </section>
+      </article>
+    </section>
 
     <!-- DESTINATION -->
     <div class="text-center" id="login-form">
@@ -195,18 +174,18 @@
           Back To Login Page
         </button>
       </div>
-      <div id="active-trips" hidden aria-live="polite">
-        <h1
-          class="display-1"
-          id="active-trip-heading"
-          style="text-align: left; margin-left: 30px; margin-top: 20px"
-        >
-          Active Trips
-        </h1>
-      </div>
+      <h1
+        class="display-1"
+        id="active-trip-heading"
+        style="text-align: left; margin-left: 30px; margin-top: 20px"
+        hidden
+      >
+        Active Trips
+      </h1>
+      <div id="active-trips" hidden aria-live="polite"></div>
       <div id="current-trip" hidden aria-live="polite"></div>
 
-      <form id="form-recommended-places">
+      <form id="form-recommended-places" hidden>
         <h2 style="text-align: first">Get the AI Recommened places</h2>
         <div
           id="recommended-places"
@@ -254,21 +233,25 @@
             </button>
           </div>
         </div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          disabled=""
+          hidden
+          id="loading-data1"
+        >
+          <span
+            class="spinner-grow spinner-grow-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Loading...
+        </button>
         <div id="best-place-table" style="margin-top: 10px">
           <table
-            class="table table-bordered table-hover border-primary"
+            class="table table-bordered table-hover"
             id="table-data"
-          >
-            <thead>
-              <tr>
-                <th scope="col">Rank</th>
-                <th scope="col">City</th>
-                <th scope="col">Country</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider" id="tbody-data"></tbody>
-          </table>
+          ></table>
         </div>
       </form>
     </div>
@@ -282,10 +265,5 @@
     ></script>
     <script type="text/javascript" src="client.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $('#table-data').DataTable();
-      });
-    </script>
   </body>
 </html>
