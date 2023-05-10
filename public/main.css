@@ -1,5 +1,5 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   position: relative;
   min-height: 100vh;
 }
@@ -19,8 +19,8 @@ main {
   margin: 0 20px;
 }
 
-input[type='text'],
-input[type='password'] {
+input[type="text"],
+input[type="password"] {
   width: 30%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -61,7 +61,7 @@ input[type='password'] {
   text-align: start;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   width: 30%;
   /* background-color: black; */
   padding: 14px 20px;
@@ -73,7 +73,7 @@ input[type='submit'] {
 h1,
 h2,
 h3 {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 h1 {
@@ -97,7 +97,7 @@ h4 {
   font-size: 1.2em;
   padding: 5px 20px;
   font-weight: bold;
-  background-color: black;
+  background-color: #7a3138;
   color: white;
   margin: 5px -20px;
 }
@@ -105,7 +105,7 @@ h4 {
 h5 {
   font-size: 1.2em;
   padding: 5px 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 p {
@@ -121,16 +121,16 @@ button,
 input,
 textarea {
   font-size: 0.9em;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-input[type='date'] {
+input[type="date"] {
   max-width: 150px;
 }
 
 button:hover,
-input[type='submit']:hover,
-input[type='button']:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
   background-color: #87cefa;
 }
 
@@ -212,6 +212,7 @@ i:hover {
   margin: 5px 0;
   display: flex;
   width: 100%;
+  align-items: center;
 }
 
 .place-form-entry > input,
@@ -330,7 +331,7 @@ i:hover {
   min-width: 50px;
 }
 
-[aria-checked='true'] {
+[aria-checked="true"] {
   text-decoration: line-through;
   background: #767676;
   color: white;
@@ -373,7 +374,7 @@ i:hover {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
@@ -413,7 +414,7 @@ body {
 }
 
 .--title__text-underline:after {
-  content: '';
+  content: "";
   display: block;
   opacity: 0.7;
   height: 4px;
@@ -497,7 +498,7 @@ header {
 }
 
 .navbar__link:not(:last-child)::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
@@ -553,7 +554,7 @@ header {
 }
 
 .--subnav__after::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   right: -24px;
@@ -779,7 +780,7 @@ header {
 }
 
 .sub-menu__title:after {
-  content: '';
+  content: "";
   display: block;
   background-color: #ffd105;
   opacity: 0.5;
@@ -1227,7 +1228,7 @@ header {
 }
 
 .time__block:not(:first-child)::after {
-  content: '';
+  content: "";
   display: block;
   background-color: rgba(0, 0, 0, 0.08);
   position: absolute;
@@ -1507,7 +1508,7 @@ header {
 /* END PROMOTION */
 
 footer {
-  background-color: #14d5b1;
+  background-color: #7a3138;
   height: 30px;
   text-align: center;
   padding: 10px;
@@ -2059,4 +2060,29 @@ footer {
   .promotion-text::after {
     bottom: 11px;
   }
+}
+
+#details-form {
+  margin: 19px 160px;
+}
+
+.details-form-entry {
+  align-items: center;
+}
+
+.btn-dark {
+  background-color: #7a3138;
+  border-color: #7a3138;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  background-color: #7a3138;
+  color: white;
+  border-color: #7a3138;
+}
+
+#saved-places,
+#packing-list {
+  margin: 70px;
 }
