@@ -9,7 +9,7 @@ const currentTripForAI = null;
 //COMMUNICATION WITH THE DATABASE//
 function getActiveTrips(callback) {
   let ok;
-  fetch('http://localhost:8080/api/trips', {
+  fetch(`${window.baseUrl}/api/trips`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
@@ -29,7 +29,7 @@ function getActiveTrips(callback) {
 function getSelectedTrip(callback, id, shouldEdit) {
   let ok;
   console.log(id);
-  fetch(`http://localhost:8080/api/trips/${id}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
@@ -49,7 +49,7 @@ function getSelectedTrip(callback, id, shouldEdit) {
 
 function getSelectedPlace(callback, id, placeId) {
   let ok;
-  fetch(`http://localhost:8080/api/trips/${id}/places/${placeId}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/places/${placeId}`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
@@ -70,7 +70,7 @@ function getSelectedPlace(callback, id, placeId) {
 
 function getSelectedItem(callback, id, itemId) {
   let ok;
-  fetch(`http://localhost:8080/api/trips/${id}/packingList/${itemId}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/packingList/${itemId}`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
@@ -88,7 +88,7 @@ function getSelectedItem(callback, id, itemId) {
 
 function addNewTrip(callback, updateData) {
   let ok;
-  fetch('http://localhost:8080/api/trips', {
+  fetch(`${window.baseUrl}/api/trips`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -110,7 +110,7 @@ function addNewTrip(callback, updateData) {
 
 function addNewPlace(callback, id, updateData) {
   let ok;
-  fetch(`http://localhost:8080/api/trips/${id}/places`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/places`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -133,7 +133,7 @@ function addNewPlace(callback, id, updateData) {
 
 function addNewItem(callback, id, updateData) {
   let ok;
-  fetch(`http://localhost:8080/api/trips/${id}/packingList`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/packingList`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -155,7 +155,7 @@ function addNewItem(callback, id, updateData) {
 }
 
 function editTrip(callback, updateData) {
-  fetch(`http://localhost:8080/api/trips/${updateData.id}`, {
+  fetch(`${window.baseUrl}/api/trips/${updateData.id}`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
@@ -174,7 +174,7 @@ function editTrip(callback, updateData) {
 }
 
 function editPlace(callback, id, placeId, updateData) {
-  fetch(`http://localhost:8080/api/trips/${id}/places/${placeId}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/places/${placeId}`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
@@ -193,7 +193,7 @@ function editPlace(callback, id, placeId, updateData) {
 }
 
 function editItem(callback, id, updateData) {
-  fetch(`http://localhost:8080/api/trips/${id}/packingList/${updateData.id}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/packingList/${updateData.id}`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
@@ -213,7 +213,7 @@ function editItem(callback, id, updateData) {
 
 function deleteTripFromDatabase(callback, id) {
   let ok;
-  fetch(`http://localhost:8080/api/trips/${id}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${user.authToken}`,
@@ -229,7 +229,7 @@ function deleteTripFromDatabase(callback, id) {
 }
 
 function deletePlaceFromTrip(callback, id, placeId) {
-  fetch(`http://localhost:8080/api/trips/${id}/places/${placeId}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/places/${placeId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${user.authToken}`,
@@ -245,7 +245,7 @@ function deletePlaceFromTrip(callback, id, placeId) {
 }
 
 function deletePackingItemFromTrip(callback, id, itemId) {
-  fetch(`http://localhost:8080/api/trips/${id}/packingList/${itemId}`, {
+  fetch(`${window.baseUrl}/api/trips/${id}/packingList/${itemId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${user.authToken}`,
@@ -262,7 +262,7 @@ function deletePackingItemFromTrip(callback, id, itemId) {
 
 function createNewUser(newInfo) {
   let ok;
-  fetch('http://localhost:8080/api/users', {
+  fetch(`${window.baseUrl}/api/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -290,7 +290,8 @@ function createNewUser(newInfo) {
 }
 
 function loginAndDisplayDash(loginInfo, isNewUser) {
-  fetch('http://localhost:8080/api/auth/login', {
+  console.log();
+  fetch(`${window.baseUrl}/api/auth/login`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -1705,17 +1706,8 @@ function setSpanishValues() {
 
 //run everything
 $(function () {
-  const token = localStorage.getItem('token');
+  window.baseUrl = 'http://localhost:8080';
 
-  if (token) {
-    // User is authenticated, proceed to display the dashboard or relevant content
-    // Add your logic to display the authenticated content here
-    console.log('User is authenticated');
-  } else {
-    // User is not authenticated, redirect to the login page or display a login form
-    // Add your logic to redirect or display the login form here
-    console.log('User is not authenticated');
-  }
   watchLogin();
   watchSignup();
   watchDashboard();
