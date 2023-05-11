@@ -290,7 +290,7 @@ function createNewUser(newInfo) {
 }
 
 function loginAndDisplayDash(loginInfo, isNewUser) {
-  console.log();
+  console.log(`${window.baseUrl}/api/auth/login`);
   fetch(`${window.baseUrl}/api/auth/login`, {
     method: 'POST',
     mode: 'cors',
