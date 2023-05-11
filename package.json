@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "\"App that stores upcoming trip plans in one place\"",
   "main": "server.js",
+  "proxy": "http://54.166.29.143:8080",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
