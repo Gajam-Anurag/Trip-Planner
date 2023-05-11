@@ -890,21 +890,21 @@ function displaySelectedTrip(currentTrip, shouldEdit) {
     <div class="card" id="ai-generated" hidden>
       <img src="https://media.istockphoto.com/id/1322517873/photo/hat-map-camera-sunglasses-travelogue-pen-departure-for-a-travel.jpg?s=612x612&w=0&k=20&c=R0QEmGGkR6c-2quD6FRrgxOrGylXWmBl91Kx2SO0OqU=" class="card-img-top" width="100%" height="200">
         <div class="card-body">
-        <h5 class="card-title">Unforgettable Explorations: A Well-Crafted Travel Itinerary</h5>
+        <h5 class="card-title" id="itinerary-title">Unforgettable Explorations: A Well-Crafted Travel Itinerary</h5>
           <p class="card-text" id="ai-generated-body"></p>
         </div>
     </div>
     <div class="card" id="ai-generated-2" hidden>
       <img src="https://png.pngtree.com/thumb_back/fh260/background/20210908/pngtree-wanaka-homestay-afternoon-log-cabin-outdoor-foreign-house-photography-picture-with-image_833130.jpg" class="card-img-top" width="100%" height="200">
         <div class="card-body">
-          <h5 class="card-title">Top Homestays: Your Guide to Exceptional Accommodations</h5>
+          <h5 class="card-title" id="homestays-title">Top Homestays: Your Guide to Exceptional Accommodations</h5>
           <p class="card-text" id="ai-generated2-body"></p>
         </div>
     </div>
     <div class="card" id="ai-generated-3" hidden>
       <img src="https://m.media-amazon.com/images/I/71V-+sHTipL.jpg" class="card-img-top" id="airport-image" width="100%" height="200">
         <div class="card-body" >
-        <h5 class="card-title">Airports of Convenience: Smooth Transits and Travel Experiences</h5>
+        <h5 class="card-title" id="travel-title">Airports of Convenience: Smooth Transits and Travel Experiences</h5>
         <p class="card-text" id="ai-generated3-body"></p>
         </div>
     </div>
@@ -1506,6 +1506,10 @@ const data = {
   travel: 'Travel Itinerary',
   homestays: 'Homestays',
   airports: 'Airport Hubs',
+  travelTitle: 'Unforgettable Explorations: A Well-Crafted Travel Itinerary',
+  homestaysTitle: 'Top Homestays: Your Guide to Exceptional Accommodations',
+  airportsTitle:
+    'Airports of Convenience: Smooth Transits and Travel Experiences',
 };
 
 const spanish = {
@@ -1537,6 +1541,12 @@ const spanish = {
   travel: 'Itinerario de viaje',
   homestays: 'Casas de familia',
   airports: 'Centros aeroportuarios',
+  travelTitle:
+    'Exploraciones inolvidables: un itinerario de viaje bien elaborado',
+  homestaysTitle:
+    'Las mejores casas de familia: su guía de alojamientos excepcionales',
+  airportsTitle:
+    'Aeropuertos de conveniencia: tránsitos fluidos y experiencias de viaje',
 };
 
 function setValues() {
@@ -1590,6 +1600,16 @@ function setValues() {
   }
   if (document.getElementById('trip-airports')) {
     document.querySelector('#trip-airports').innerHTML = data.airports;
+  }
+
+  if (document.getElementById('travel-title')) {
+    document.querySelector('#travel-title').innerHTML = data.travelTitle;
+  }
+  if (document.getElementById('homestays-title')) {
+    document.querySelector('#homestays-title').innerHTML = data.homestaysTitle;
+  }
+  if (document.getElementById('itinerary-title')) {
+    document.querySelector('#itinerary-title').innerHTML = data.airportsTitle;
   }
 
   if (document.getElementById('add-trip')) {
@@ -1667,6 +1687,18 @@ function setSpanishValues() {
   }
   if (document.getElementById('dashboard-redirect')) {
     document.querySelector('#dashboard-redirect').innerHTML = spanish.dashboard;
+  }
+
+  if (document.getElementById('travel-title')) {
+    document.querySelector('#travel-title').innerHTML = spanish.travelTitle;
+  }
+  if (document.getElementById('homestays-title')) {
+    document.querySelector('#homestays-title').innerHTML =
+      spanish.homestaysTitle;
+  }
+  if (document.getElementById('itinerary-title')) {
+    document.querySelector('#itinerary-title').innerHTML =
+      spanish.airportsTitle;
   }
 
   if (document.getElementById('bookmark')) {
