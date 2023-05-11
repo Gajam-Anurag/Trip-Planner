@@ -9,7 +9,8 @@ const currentTripForAI = null;
 //COMMUNICATION WITH THE DATABASE//
 function getActiveTrips(callback) {
   let ok;
-  fetch(`${window.baseUrl}/api/trips`, {
+  let x = 'http://54.166.29.143:8080';
+  fetch(`${x}/api/trips`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
