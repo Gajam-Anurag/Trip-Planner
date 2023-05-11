@@ -751,6 +751,7 @@ function getBestPlaces(place, state, month) {
     .then((response) => response.json())
     .then((result) => {
       // The completion that the API returned
+      console.log(result);
       let completion = result.choices[0].text;
       completion = JSON.parse(completion);
       console.log(completion);
@@ -984,6 +985,8 @@ function displayLogin() {
   $('#logout-button').prop('hidden', true);
   $('#login-page').prop('hidden', false);
   $('#login-header').prop('hidden', false);
+  $('#form-recommended-places').prop('hidden', true);
+  $('#active-trip-heading').prop('hidden', true);
 }
 
 //DISPLAY ERROR FUNCTIONS//
