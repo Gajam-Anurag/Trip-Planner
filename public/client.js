@@ -710,13 +710,13 @@ function displayAIGeneratedTrip2(currentTrIP) {
     .then((result) => {
       // The completion that the API returned
       let completion = result.choices[0].text;
-      completion = JSON.parse(completion);
+
       console.log(completion);
-      $('#tbody-data').empty();
-      for (let i = 0; i < completion.length; i++) {
-        $('#tbody-data').append(
-          `<tr><td>${completion[i].rank}</td><td>${completion[i].city}</td><td>${completion[i].country}</td><td>${completion[i].description}</td></tr>`
-        );
+      const ele = document.querySelector('#ai-generated2-body');
+      if (ele) {
+        ele.innerHTML = completion;
+        $('#loading-data').prop('hidden', true);
+        $('#ai-generated-2').prop('hidden', false);
       }
     })
     .catch((error) => console.error(error));
@@ -1461,14 +1461,16 @@ function watchLang() {
 }
 
 function watchRecommendPlaces() {
-  console.log(1224);
-
-  $('#recommend-button').click((event) => {
-    getBestPlaces(
-      $('#place-id').val(),
-      $('#state-id').val(),
-      $('#select-month').val()
-    );
+  $('#recommend-button-id').on('click', 'button', (event) => {
+    event.preventDefault();
+    const selected = $(event.currentTarget);
+    if (selected.attr('id') === 'recommend-button') {
+      getBestPlaces(
+        $('#place-id').val(),
+        $('#state-id').val(),
+        $('#select-month').val()
+      );
+    }
   });
 }
 
@@ -1709,8 +1711,7 @@ function setSpanishValues() {
 $(function () {
   window.baseUrl = 'http://localhost:8080';
 
-  window.openapi_key_predined =
-    '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';
+  window.openapi_key_predined = '';
 
   watchLogin();
   watchSignup();
