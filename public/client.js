@@ -9,8 +9,7 @@ const currentTripForAI = null;
 //COMMUNICATION WITH THE DATABASE//
 function getActiveTrips(callback) {
   let ok;
-  let x = 'http://54.166.29.143:8080';
-  fetch(`${x}/api/trips`, {
+  fetch(`${window.baseUrl}/api/trips`, {
     headers: {
       Authorization: `Bearer ${user.authToken}`,
     },
@@ -292,7 +291,7 @@ function createNewUser(newInfo) {
 
 function loginAndDisplayDash(loginInfo, isNewUser) {
   console.log(`${window.baseUrl}/api/auth/login`);
-  fetch(`http://54.166.29.143:8080/api/auth/login`, {
+  fetch(`${window.baseUrl}/api/auth/login`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -632,7 +631,7 @@ function displayAIGeneratedTrip(currentTrIP) {
   console.log(selectElementValue);
 
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = `${window.openapi_key_predined}`;
   let promptComd;
   if (selectElementValue == 'english') {
     promptComd = `generate travel plan for the place ${currentTrIP.destination} from ${currentTrIP.dates.start} to ${currentTrIP.dates.end}`;
@@ -682,7 +681,7 @@ function displayAIGeneratedTrip2(currentTrIP) {
   const selectElementValue = document.querySelector('.form-select').value;
 
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = `${window.openapi_key_predined}`;
   let promptComd;
   if (selectElementValue == 'english') {
     promptComd = `give me list of top hotels at the destination ${currentTrIP.destination} with website links in a href tag`;
@@ -725,7 +724,7 @@ function displayAIGeneratedTrip2(currentTrIP) {
 
 function getBestPlaces(place, state, month) {
   $('#loading-data1').prop('hidden', false);
-  const API_KEY = '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';
+  const API_KEY = `${window.openapi_key_predined}`;
   let promptComd;
   const selectElementValue = document.querySelector('.form-select').value;
   if (selectElementValue == 'english') {
@@ -790,7 +789,8 @@ function displayAIGeneratedTrip3(currentTrIP) {
   console.log(selectElementValue);
 
   // Replace YOUR_API_KEY_HERE with your actual API key
-  const API_KEY = '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';
+  const API_KEY = `${window.openapi_key_predined}`;
+  console.log(API_KEY);
   let promptComd;
 
   if (selectElementValue == 'english') {
@@ -1708,6 +1708,9 @@ function setSpanishValues() {
 //run everything
 $(function () {
   window.baseUrl = 'http://localhost:8080';
+
+  window.openapi_key_predined =
+    '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';
 
   watchLogin();
   watchSignup();
