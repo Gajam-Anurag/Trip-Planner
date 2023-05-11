@@ -291,7 +291,7 @@ function createNewUser(newInfo) {
 
 function loginAndDisplayDash(loginInfo, isNewUser) {
   console.log(`${window.baseUrl}/api/auth/login`);
-  fetch(`${window.baseUrl}/api/auth/login`, {
+  fetch(`https://54.166.29.143:8080/api/auth/login`, {
     method: 'POST',
     mode: 'cors',
     headers: {
